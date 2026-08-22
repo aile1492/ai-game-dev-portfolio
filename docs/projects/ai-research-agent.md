@@ -1,51 +1,36 @@
 # AI Research Agent
 
-## Summary
+## 한 줄 소개
 
-AI Research Agent는 사용자의 질문을 하위 질문으로 분해하고, 검색, 페이지 읽기, 분석, 리포트 작성을 순차적으로 수행하는 LangGraph 기반 자율 연구 Agent입니다.
+복잡한 질문을 작은 조사 항목으로 나누고, 웹 자료를 읽고 비교한 뒤 출처가 있는 보고서를 만드는 조사 보조 도구입니다.
 
-## Problem
+## 해결하려던 문제
 
-기술 리서치나 채용 공고 분석처럼 여러 출처를 읽고 비교해야 하는 업무는 시간이 많이 걸립니다. 단순 챗봇 응답은 빠르지만, 어떤 자료를 근거로 판단했는지 추적하기 어렵습니다.
+자료 조사는 검색, 페이지 읽기, 비교, 정리 단계를 반복해야 합니다. AI가 어떤 과정을 거쳐 결과를 만들었는지 보이지 않으면 진행 상황과 근거를 확인하기 어렵습니다.
 
-## Approach
+## 구현 방식
 
-```text
-User question
-  -> planner
-  -> searcher
-  -> reader
-  -> analyzer
-  -> writer
-  -> markdown report
-```
+1. 질문을 3~5개의 조사 항목으로 나눕니다.
+2. 각 항목에 필요한 웹 자료를 검색합니다.
+3. 관련성이 높은 페이지를 읽습니다.
+4. 정보가 충분한지 판단하고 부족하면 추가 검색합니다.
+5. 출처와 함께 최종 보고서를 작성합니다.
 
-각 단계는 상태를 공유하며, 진행 상황은 SSE로 frontend에 전달됩니다.
+각 단계의 진행 상황을 화면에서 실시간으로 보여주며, 검색이 끝없이 반복되지 않도록 최대 반복 횟수를 제한했습니다.
 
-## Key Features
+## 주요 기능
 
-- LangGraph StateGraph 기반 multi step workflow
-- Tavily search
-- Jina Reader 기반 page reading
-- Claude/Groq provider support
-- FastAPI backend
-- Next.js, TypeScript frontend
-- SSE progress timeline
-- Markdown report generation
+- 계획, 검색, 읽기, 분석, 작성의 5단계 작업 흐름
+- 단계별 진행 상황 실시간 표시
+- 검색 결과와 출처 관리
+- 외부 서비스 오류 재시도와 대체 검색
+- 최대 3회 반복 제한
 
-## Portfolio Value
+## 사용 기술
 
-이 프로젝트는 AI Agent를 단순 자동응답이 아니라, 목표를 분해하고 도구를 사용하며 결과물을 만드는 workflow로 구성한 경험을 보여줍니다.
+Python, FastAPI, LangGraph, LangChain, Tavily, Jina Reader, Next.js, TypeScript
 
-- Agent state 설계
-- tool-use workflow 이해
-- source based report generation
-- 사용자에게 진행 상황을 보여주는 UX
+## 확인 자료
 
-## GitHub
-
-https://github.com/aile1492/ai-research-agent
-
-## Resume Summary
-
-AI Research Agent는 질문을 하위 작업으로 분해하고, 검색, 페이지 읽기, 분석, 리포트 작성을 수행하는 LangGraph 기반 자율 연구 도구입니다. Agent의 단계별 상태와 진행 이벤트를 관리하며 source based report generation 구조를 구현했습니다.
+- [실행 화면](https://ai-research-agent-nine-ashy.vercel.app)
+- [GitHub 저장소](https://github.com/aile1492/ai-research-agent)

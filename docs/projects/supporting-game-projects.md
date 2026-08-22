@@ -1,49 +1,39 @@
-# Supporting Game Projects
+# AI와 함께 만든 게임
 
-이 문서는 AI Tooling 중심 프로젝트를 보조하는 개인 게임 제작 프로젝트들을 정리합니다.
+게임을 직접 기획하고 구현하며 AI를 협업 도구로 활용한 개인 프로젝트입니다. 대표 프로젝트인 Word Bloom을 먼저 소개하고, Sweet Crunch와 2048 Puzzle이 이를 보완합니다.
 
-## 2048 Puzzle
+## Word Bloom: 대표 프로젝트
 
-리소스 의존도가 낮은 퍼즐 게임을 AI 협업으로 빠르게 제작한 Godot 프로젝트입니다.
+기획부터 구현, 일부 그래픽 제작, Android 빌드와 Google Play 출시까지 혼자 진행한 단어 퍼즐 게임입니다.
 
-- Stack: Godot, GDScript
-- Focus: logic and UI separation, multiple game modes, programmatic UI
-- GitHub: https://github.com/aile1492/2048-puzzle
+- 단어 퍼즐 규칙과 글자 배치 구현
+- 화면 흐름, 저장과 모바일 조작 대응
+- ComfyUI를 활용한 일부 그래픽 제작
+- AI를 기획, 구현 보조, 코드 검토와 문서화에 활용
+- Google Play 출시 완료
 
-### Portfolio Point
-
-게임 로직을 시각 표현과 분리하고, AI와 협업해 빠르게 playable prototype을 만드는 경험을 보여줍니다.
-
-## Word Bloom
-
-Godot와 ComfyUI를 활용해 기획, 리소스 제작, 구현, 모바일 출시 준비 흐름을 경험한 단어 퍼즐 게임입니다.
-
-- Stack: Godot, GDScript, ComfyUI
-- Focus: AI assisted asset pipeline, mobile game flow, release preparation
-- GitHub: https://github.com/aile1492/word-bloom
-- Google Play: https://play.google.com/store/apps/details?id=com.wordbloom.game
-
-### Portfolio Point
-
-AI를 코드뿐 아니라 리소스 제작과 게임 제작 전체 흐름에 적용했고, 실제 Google Play 라이브 링크를 통해 출시 경험을 함께 보여줍니다.
+[Google Play](https://play.google.com/store/apps/details?id=com.wordbloom.game) · [GitHub 저장소](https://github.com/aile1492/word-bloom)
 
 ## Sweet Crunch
 
-TypeScript와 Phaser 3 기반 Match-3 퍼즐 게임입니다.
+같은 그림의 블록을 3개 이상 연결하는 디저트 테마 퍼즐 게임입니다.
 
-- Stack: TypeScript, Phaser 3, Vite, Capacitor
-- Focus: data driven level structure, Android build, QA checklist
-- GitHub: https://github.com/aile1492/sweet-crunch
+- 보드 교환, 같은 그림 찾기, 제거와 연쇄 처리
+- 특수 블록과 장애물
+- 점수, 이동 횟수와 목표 처리
+- 규칙을 조합해 레벨을 만드는 데이터 구조
+- TypeScript와 Phaser 3 사용
 
-### Portfolio Point
+[GitHub 저장소](https://github.com/aile1492/sweet-crunch)
 
-데이터 기반 레벨 구조, 모바일 빌드, QA 관점까지 고려한 게임 개발 경험을 보여줍니다.
+## 2048 Puzzle
 
-## How These Projects Support the Main Story
+같은 숫자 블록을 합쳐 더 큰 숫자를 만드는 퍼즐 게임입니다.
 
-이 프로젝트들은 핵심 포트폴리오의 중심은 아니지만 다음 맥락을 보완합니다.
+- 이동, 합치기, 점수 계산과 종료 규칙
+- 여러 게임 모드
+- 테스트 가능한 게임 로직과 화면 표현 분리
+- 팝업을 열어도 게임 상태가 유지되는 화면 구조
+- Godot와 GDScript 사용
 
-- AI와 협업해 playable result를 만들 수 있음
-- 게임 로직, UI, 리소스, 빌드 흐름을 직접 경험함
-- 다양한 엔진과 프레임워크를 빠르게 학습하고 적용함
-- 실무 프로젝트 외에도 개인 프로젝트를 통해 개발 범위를 확장함
+[웹에서 실행](https://aile1492.github.io/2048-puzzle-web) · [GitHub 저장소](https://github.com/aile1492/2048-puzzle)

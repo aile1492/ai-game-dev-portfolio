@@ -1,107 +1,112 @@
 # AI Game Development Portfolio
 
-게임 클라이언트 개발 경험을 바탕으로 AI Tooling, 개발 자동화, Agent 기반 워크플로우를 실험하고 정리한 포트폴리오입니다.
+게임 클라이언트 개발 경험을 바탕으로, AI와 함께 게임을 기획하고 구현한 과정과 게임 제작에서 발견한 반복 업무를 개발 도구로 확장한 경험을 정리한 포트폴리오입니다.
 
-이 저장소는 회사 내부 소스나 실제 운영 데이터를 공개하지 않습니다. 공개 가능한 범위 안에서 문제 정의, 설계 의도, 자동화 구조, 검증 방식을 정리한 제출용 허브입니다.
+이 저장소는 회사 내부 소스, 실제 운영 데이터, 민감한 게임 수치와 내부 파일명을 공개하지 않습니다. 공개 가능한 개인 프로젝트를 중심으로 문제, 구현 방식, 결과와 검증 근거를 설명합니다.
 
-## Positioning
+## 한눈에 보는 경험
 
-저는 Cocos Creator와 JavaScript 기반 상용 게임 콘텐츠 개발과 운영에 참여해왔습니다. 최근에는 C++ 서버 로직, 빌드와 배포 대응, AI를 활용한 반복 작업 자동화까지 관심 영역을 확장하고 있습니다.
+- 상용 게임 클라이언트 개발 및 운영 경험 8년
+- 슬롯형 게임 콘텐츠 50종 이상 제작
+- Cocos Creator, JavaScript, C++, TypeScript 기반 실무 개발
+- AI와 협업해 만든 모바일 퍼즐 게임 **Word Bloom** Google Play 출시
+- Godot와 Phaser 3를 활용한 퍼즐 게임 제작
+- 게임 제작 경험을 코드 검색, 자료 조사, 반복 업무 자동화 도구로 확장
 
-AI는 단순 코드 생성 도구가 아니라, 기획서 분석, 코드와 데이터 초안 생성, 검증, 문서화, 리포팅까지 연결되는 개발 생산성 시스템으로 다루고 있습니다.
+## 대표 프로젝트: Word Bloom
 
-## Focus Areas
+기획부터 구현, 일부 그래픽 제작, 모바일 빌드와 Google Play 출시까지 혼자 진행한 단어 퍼즐 게임입니다.
 
-- AI 기반 게임 개발 도구 제작
-- 반복 업무 자동화 및 개발 생산성 개선
-- AI Agent, Tool-use, Retrieval 기반 개발 워크플로우
-- 게임 개발 파이프라인 분석 및 리포팅
-- 클라이언트와 서버 흐름을 함께 고려한 콘텐츠 제작 자동화
+![Word Bloom 게임 화면](https://raw.githubusercontent.com/aile1492/word-bloom/main/screenshots/02_gameplay.png)
 
-## Core Projects
+- 단어 퍼즐 규칙과 글자 배치 방식 구현
+- 홈, 게임, 일시정지, 결과 화면의 흐름 구성
+- 게임 진행 상황과 사용자 설정 저장
+- 모바일 화면과 Android 빌드 대응
+- ComfyUI를 활용한 일부 그래픽 제작
+- AI를 기획, 구현 보조, 코드 검토와 문서화에 활용
 
-### 1. Game Content Automation Factory
+[Google Play에서 보기](https://play.google.com/store/apps/details?id=com.wordbloom.game) · [GitHub 저장소 보기](https://github.com/aile1492/word-bloom)
 
-게임 콘텐츠 제작 과정에서 반복되는 기획서 해석, 코드 초안 생성, 리소스 등록, 검증 흐름을 자동화하기 위한 내부 생산성 도구 컨셉입니다.
+## AI와 함께 만든 게임
 
-- Type: AI assisted game development tooling
-- Stack: Python, Tkinter, structured data generation, JavaScript draft generation, C++ header and source draft generation
-- Portfolio value: 실제 게임 콘텐츠 제작 경험에서 나온 반복 업무 병목을 AI Tooling으로 해결하려는 시도
-- Public scope: 회사 내부 자산, 운영 데이터, 민감한 게임 수치, 실제 파일명은 공개 범위에서 제외하고 구조와 설계 의도 중심으로 정리
+### Sweet Crunch
 
-[Case Study](docs/projects/game-content-automation-factory.md)
+같은 그림의 블록을 3개 이상 연결하는 디저트 테마 퍼즐 게임입니다. 보드 처리, 연쇄 제거, 특수 블록, 장애물과 레벨 데이터 구성을 구현했습니다.
 
-### 2. Game Content Knowledge Agent
+- 사용 기술: TypeScript, Phaser 3
+- [GitHub 저장소](https://github.com/aile1492/sweet-crunch)
 
-기존 상용 게임 콘텐츠 구조를 재사용 가능한 knowledge pack으로 정리하고, 사용자가 제공하는 기획서를 바탕으로 안전한 참조를 선택해 구현 초안을 생성하도록 설계한 AI-assisted creation workflow입니다.
+### 2048 Puzzle
 
-- Type: knowledge pack based game content creation assistant
-- Stack: knowledge pack, structural index, semantic index, reverse-design briefs, source reference index, agent workflow
-- Portfolio value: 단순 자동 생성기가 아니라, 참조 선택, 금지 영역 분리, 수동 통합 범위, non-gold summary 정책까지 포함한 안전한 AI 제작 워크플로우
-- Public scope: 확률, 보상, 경제 밸런스, 운영 데이터, 원본 소스 경로는 자동화와 공개 범위에서 제외
+같은 숫자 블록을 합쳐 더 큰 숫자를 만드는 퍼즐 게임입니다. 이동과 합치기 규칙, 여러 게임 모드, 화면 상태 관리와 테스트 가능한 게임 로직 분리를 구현했습니다.
 
-[Case Study](docs/projects/game-content-knowledge-agent.md)
+- 사용 기술: Godot, GDScript
+- [웹에서 실행](https://aile1492.github.io/2048-puzzle-web) · [GitHub 저장소](https://github.com/aile1492/2048-puzzle)
 
-### 3. UE5 Pipeline Health Agent
+[게임 프로젝트 상세 설명](docs/projects/supporting-game-projects.md)
 
-Unreal Engine 5 프로젝트의 로그, 설정, 에셋 상태를 읽기 전용으로 분석하고 BuildCookRun, DDC, shader, validation, asset hygiene 신호를 리포트화하는 Python 기반 개발 자동화 도구입니다.
+## AI 개발 도구
 
-![UE5 Pipeline Health Agent report](assets/ue5_stackobot_report_overview.png)
+### Code Search Agent
 
-- Type: UE5 development automation and pipeline health check
-- Stack: Python, pytest, JSON, Markdown, HTML report, Unreal Engine 5 sample project
-- Evidence: Epic 공식 Stack O Bot 샘플의 실제 editor log 분석
-- Result: AutomationTool ExitCode=1 / BUILD FAILED 신호를 critical finding으로 탐지
+질문과 관련된 코드 파일과 함수를 찾아 코드 근거와 함께 답변하는 검색 도구입니다. 코드를 의미 있는 단위로 나누고, 질문과 가까운 코드를 찾은 뒤 AI가 관련성을 다시 확인합니다.
 
-[Case Study](docs/projects/ue5-pipeline-health-agent.md)
+- 사용 기술: Python, FastAPI, LangGraph, Tree-sitter, ChromaDB, Next.js, TypeScript
+- [상세 문서](docs/projects/code-search-agent.md) · [GitHub 저장소](https://github.com/aile1492/code-search-agent)
 
-### 4. Code Search Agent
+### AI Research Agent
 
-코드베이스를 AST와 벡터 검색 기반으로 탐색하고, LLM을 활용해 코드 근거 중심으로 답변하는 AI 코드 검색 도구입니다.
+복잡한 질문을 작은 조사 항목으로 나누고, 웹 검색과 페이지 읽기, 분석과 보고서 작성을 단계적으로 진행하는 조사 보조 도구입니다.
 
-- Type: AI code search and retrieval workflow
-- Stack: Python, FastAPI, LangGraph, Tree-sitter, ChromaDB, sentence-transformers, Next.js, TypeScript
-- Portfolio value: 개발자가 코드 맥락을 빠르게 찾을 수 있도록 돕는 개발 생산성 도구
+- 사용 기술: Python, FastAPI, LangGraph, LangChain, Tavily, Jina Reader, Next.js, TypeScript
+- [상세 문서](docs/projects/ai-research-agent.md) · [실행 화면](https://ai-research-agent-nine-ashy.vercel.app) · [GitHub 저장소](https://github.com/aile1492/ai-research-agent)
 
-[Case Study](docs/projects/code-search-agent.md)
+### Game Content Automation Factory
 
-### 5. AI Research Agent
+기획서 해석, 데이터 작성, 클라이언트와 서버 코드 초안 생성, 등록 파일 확인을 하나의 작업 흐름으로 묶은 게임 콘텐츠 제작 자동화 설계입니다.
 
-질문을 하위 질문으로 분해하고, 웹 검색, 페이지 읽기, 분석, 리포트 작성을 단계적으로 수행하는 LangGraph 기반 연구 Agent입니다.
+- 사용 기술: Python, Tkinter, JavaScript, C++
+- [상세 문서](docs/projects/game-content-automation-factory.md)
 
-- Type: Agentic research workflow
-- Stack: Python, FastAPI, LangGraph, LangChain, Tavily, Jina Reader, Next.js, TypeScript, SSE
-- Portfolio value: Agent workflow, 단계별 상태 관리, source based report generation 경험
+### Game Content Knowledge Agent
 
-[Case Study](docs/projects/ai-research-agent.md)
+AI가 참고할 수 있는 자료와 자동화하면 안 되는 영역을 구분한 게임 콘텐츠 제작 절차입니다. 확률, 보상, 경제 수치와 실제 리소스는 자동 생성 대상에서 제외합니다.
 
-## Supporting Game Projects
+- [상세 문서](docs/projects/game-content-knowledge-agent.md)
 
-개인 게임 프로젝트는 AI 협업, 모바일 출시 준비, 게임 로직 분리, 리소스 제작 흐름을 보조적으로 보여주는 자료입니다.
+### UE5 Pipeline Health Agent: 보조 프로젝트
 
-[Supporting Game Projects](docs/projects/supporting-game-projects.md)
+Unreal Engine 5 공식 샘플의 설정과 로그를 읽기 전용으로 확인하고 위험 신호를 보고서로 정리한 프로젝트 점검 도구입니다.
 
-## Job Fit
+![UE5 Pipeline Health Agent 보고서](assets/ue5_stackobot_report_overview.png)
 
-이 포트폴리오는 특히 다음 유형의 포지션에 맞춰 정리했습니다.
+- Epic의 Stack O Bot 공식 샘플 분석
+- `AutomationTool ExitCode=1`과 `BUILD FAILED` 탐지
+- HTML, Markdown, JSON 보고서 생성
+- 자동화 테스트 11개 통과
+- Unreal Engine 5는 주력 실무가 아닌 개인 학습·도구 제작 경험
 
-- AI 게임 개발 도구 엔지니어
-- 개발 자동화 엔지니어
-- Technical Artist 팀과 협업하는 내부 툴 개발자
-- AI Agent 기반 개발 워크플로우 구축 담당자
-- 게임 개발 생산성 개선 도구 개발자
+[상세 문서](docs/projects/ue5-pipeline-health-agent.md) · [GitHub 저장소](https://github.com/aile1492/ue5-pipeline-health-agent)
 
-[Chrono Studio Job Fit](docs/job-fit/chrono-studio.md)
+## 사용 기술
 
-## Honest Scope
+- **실무 주력:** C++, JavaScript, TypeScript, Cocos Creator
+- **게임 제작:** Godot, GDScript, Phaser 3, ComfyUI
+- **AI 개발 도구:** Python, FastAPI, LangGraph, Next.js
+- **AI 협업:** Claude, Gemini, Codex
+- **개발 환경 분석:** Unreal Engine 5 공식 샘플
 
-- Unreal Engine 5는 실무 주력 경험이 아니라, 공식 샘플 프로젝트를 분석하고 자동화 도구를 만든 개인 포트폴리오 경험입니다.
-- Python은 주력 실무 언어라기보다 AI Tooling과 자동화 프로젝트를 통해 활용 범위를 확장한 언어입니다.
-- Game Content Automation Factory는 실행형 생성 자동화 도구이고, Game Content Knowledge Agent는 knowledge pack 기반 AI 제작 workflow입니다.
-- 두 게임 자동화 프로젝트 모두 실제 업무 병목에서 출발했지만, 공개 자료에는 회사 내부 자산, 운영 데이터, 민감한 게임 수치, 실제 파일명을 포함하지 않습니다.
-- AI API key가 필요한 부분은 실제 키 없이 mock provider 또는 설계 문서 중심으로 설명합니다.
+## 경험 범위와 공개 원칙
 
-## Links
+- Word Bloom은 기획부터 Google Play 출시까지 진행한 대표 개인 게임 프로젝트입니다.
+- Sweet Crunch와 2048 Puzzle은 AI 협업 게임 제작 경험을 보여주는 개인 프로젝트입니다.
+- Unreal Engine 5는 주력 실무 경험이 아니라 공식 샘플을 분석한 보조 프로젝트 경험입니다.
+- Python은 주력 실무 언어라기보다 AI 개발 도구를 만들며 활용 범위를 넓힌 언어입니다.
+- 회사 내부 소스, 운영 데이터, 확률·보상·경제 수치, 실제 내부 파일명은 공개하지 않습니다.
 
-- GitHub: https://github.com/aile1492
-- Notion Portfolio: https://www.notion.so/33413eca6587815c98e5da909b315272
+## 링크
+
+- [Notion 포트폴리오](https://app.notion.com/p/33413eca6587815c98e5da909b315272)
+- [GitHub 프로필](https://github.com/aile1492)
+- [이력서용 요약](docs/resume/summary.md)

@@ -1,114 +1,45 @@
 # UE5 Pipeline Health Agent
 
-## Summary
+## 프로젝트 위치
 
-UE5 Pipeline Health Agent는 Unreal Engine 5 프로젝트의 설정, 로그, 애셋 상태를 읽기 전용으로 분석하고 개발 파이프라인의 위험 신호를 JSON, Markdown, HTML 리포트로 정리하는 Python 기반 자동화 도구입니다.
+이 프로젝트는 대표 게임 프로젝트가 아니라, Unreal Engine 5 공식 샘플을 활용해 개발 환경 점검 도구를 만든 **보조 프로젝트**입니다. Unreal Engine 게임 제작 실무 경력을 의미하지 않습니다.
 
-이 프로젝트는 UE5 게임 콘텐츠 자체가 아니라, UE5 개발 과정에서 반복적으로 발생하는 preflight 점검과 로그 분석 병목을 줄이기 위한 포트폴리오 프로젝트입니다.
+## 한 줄 소개
 
-- GitHub: https://github.com/aile1492/ue5-pipeline-health-agent
-- Scope: 공개 가능한 샘플 프로젝트 스냅샷, 생성 리포트, 테스트 코드
-- Safety: 실제 회사 소스, 운영 로그, 내부 자산 미포함
+Unreal Engine 5 프로젝트의 설정, 로그와 콘텐츠 폴더를 읽기 전용으로 확인하고 위험 신호를 보고서로 정리하는 Python 도구입니다.
 
-## Problem
+## 해결하려던 문제
 
-UE5 프로젝트에서는 빌드, Cook, Shader compile, DDC, asset validation, naming convention, large asset 관리처럼 여러 영역의 신호가 동시에 쌓입니다. 문제는 오류 자체보다 다음 과정입니다.
+- 긴 로그에서 실제 실패 원인을 찾는 데 시간이 오래 걸립니다.
+- 정상 안내 메시지와 중요한 오류를 구분해야 합니다.
+- 파일 이름과 프로젝트 설정을 매번 사람이 확인하면 기준이 달라질 수 있습니다.
+- 규칙이 지나치게 엄격하면 정상 파일도 문제로 표시될 수 있습니다.
 
-- 로그가 길어서 중요한 실패 신호를 찾기 어렵습니다.
-- 정상 Display 로그와 실제 실패 로그를 구분해야 합니다.
-- 프로젝트별 naming prefix와 generated asset을 고려하지 않으면 false positive가 늘어납니다.
-- 매번 사람이 수동으로 점검하면 반복 작업 시간이 커집니다.
-
-## Approach
-
-설계 원칙은 Evidence First, AI Second입니다.
+## 동작 과정
 
 ```text
-UE5 project snapshot
-  -> project scanner
-  -> config scanner
-  -> log scanner
-  -> asset scanner
-  -> findings.json
-  -> health_summary.json
-  -> ai_summary.json
-  -> health_report.md
-  -> health_report.html
+UE5 프로젝트 사본
+  -> 프로젝트 구조 확인
+  -> 설정 확인
+  -> 로그 확인
+  -> 콘텐츠 파일 확인
+  -> 발견 항목과 근거 정리
+  -> HTML, Markdown, JSON 보고서 생성
 ```
 
-먼저 deterministic scanner가 finding id와 근거를 생성하고, AI summary는 해당 finding id만 참조해 역할별 action item으로 정리합니다. 즉, AI가 raw log를 자유롭게 추측하거나 과장하지 않도록 제한했습니다.
+## 공식 샘플 검증
 
-## Implemented Features
+- Epic의 Stack O Bot 공식 샘플 분석
+- `AutomationTool ExitCode=1`과 `BUILD FAILED` 탐지
+- 정상 캐시와 셰이더 안내 메시지가 잘못된 경고로 표시되지 않도록 규칙 조정
+- Unreal Engine이 자동 생성하는 폴더와 사용자 지정 접두사 고려
+- 자동화 테스트 11개 통과
+- 점검 과정에서 원본 프로젝트 파일을 수정하지 않음
 
-- `.uproject` scanner
-- `Config/*.ini` scanner
-- `Saved/Logs/*.log` scanner
-- `Content/**/*.uasset`, `Content/**/*.umap` scanner
-- JSON, Markdown, HTML report generation
-- mock AI summary provider
-- role based action items
-- `--fail-on critical/warning/info` CI exit policy
-- pytest regression tests
-- healthy, problem, official sample comparison snapshots
+## 사용 기술
 
-## Official Sample Verification
+Python, pytest, JSON, Markdown, HTML, Unreal Engine 5
 
-Epic 공식 Stack O Bot 샘플 프로젝트를 기준으로 로컬 검증 리포트를 생성했습니다.
+## 확인 자료
 
-```text
-Target: <StackOBotProject>/StackOBot.uproject
-Findings: 20
-Health score: 51
-Critical: 1
-Warning: 0
-Info: 19
-```
-
-대표 finding:
-
-```text
-LOG_COOK_001
-AutomationTool exiting with ExitCode=1 (Error_Unknown)
-BUILD FAILED
-```
-
-## Rule Calibration
-
-공식 샘플에 적용하면서 처음에는 일부 정상 로그와 프로젝트 구조가 과하게 문제로 감지되었습니다. 이후 다음 방식으로 rule을 보정했습니다.
-
-- 정상 AutomationTool 시작 로그를 critical에서 제외
-- DDC와 Shader Display 로그를 warning에서 제외
-- profiler DLL load failure를 missing asset reference에서 제외
-- `__ExternalActors__`, `__ExternalObjects__` generated asset 경로 제외
-- custom naming prefix는 warning이 아닌 info로 분류
-
-이 과정은 단순히 샘플 데이터를 맞춘 것이 아니라, 실제 UE 샘플에 적용하면서 false positive를 줄이는 업무형 튜닝 경험으로 정리했습니다.
-
-## Test Result
-
-```text
-11 passed
-```
-
-검증 항목:
-
-- expected finding 생성
-- healthy snapshot high score 유지
-- JSON, Markdown, HTML, AI summary 생성
-- AI summary가 unknown finding id를 참조하지 않음
-- scanner가 sample project files를 수정하지 않음
-- `--fail-on critical` exit code 동작
-
-## Portfolio Value
-
-이 프로젝트는 개발 자동화 엔지니어 공고의 다음 요구와 직접 연결됩니다.
-
-- 게임 개발 전반에 활용되는 AI 도구 설계 및 개발
-- 반복 작업 자동화 및 생산성 향상 시스템 구축
-- AI Agent를 활용한 개발 워크플로우 최적화
-- 내부 개발 생산성을 극대화하기 위한 AI Tooling 제작
-- Unreal Engine 개발 환경에 대한 이해
-
-## Resume Summary
-
-UE5 Pipeline Health Agent는 Unreal Engine 5 프로젝트의 설정, 로그, 애셋 상태를 읽기 전용으로 분석해 BuildCookRun, DDC, shader, validation, asset hygiene 신호를 리포트화하는 Python 기반 개발 자동화 도구입니다. Epic 공식 Stack O Bot 샘플의 로컬 editor log를 사용해 AutomationTool 실패를 감지했고, false positive를 줄이기 위해 scanner rule을 보정했습니다.
+[GitHub 저장소](https://github.com/aile1492/ue5-pipeline-health-agent)
