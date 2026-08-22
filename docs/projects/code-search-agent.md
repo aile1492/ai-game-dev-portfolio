@@ -1,56 +1,33 @@
 # Code Search Agent
 
-## Summary
+## 한 줄 소개
 
-Code Search Agent는 코드베이스를 AST 단위와 벡터 검색 기반으로 탐색하고, LLM을 활용해 코드 근거 중심으로 답변하는 AI 개발 생산성 도구입니다.
+개발자가 자연어로 질문하면 큰 코드 프로젝트에서 관련 파일과 함수를 찾아 코드 근거와 함께 답변하는 검색 도구입니다.
 
-## Problem
+## 해결하려던 문제
 
-프로젝트 규모가 커질수록 개발자가 겪는 병목은 단순 검색보다 "이 코드가 어디서 호출되고, 어떤 책임을 갖고 있으며, 변경 시 어떤 파일을 함께 봐야 하는가"를 빠르게 파악하는 일입니다.
+단순한 단어 검색만으로는 이름은 다르지만 역할이 비슷한 코드를 찾기 어렵습니다. 큰 프로젝트에서는 기능이 어디에서 처리되는지 파악하는 데 많은 시간이 듭니다.
 
-일반 텍스트 검색만으로는 다음 문제가 남습니다.
+## 구현 방식
 
-- 함수, 클래스, import 경계가 흐려진다.
-- 파일 단위 검색 결과가 너무 많다.
-- LLM에게 전체 코드를 넣기 어렵다.
-- 답변의 근거가 불명확하면 실무에서 신뢰하기 어렵다.
+- 코드를 함수, 클래스, 메서드처럼 의미 있는 단위로 나눕니다.
+- 질문의 의미와 가까운 코드 조각을 찾습니다.
+- AI가 검색 결과를 다시 비교해 관련성이 높은 코드를 선택합니다.
+- 선택된 코드만 근거로 답변합니다.
+- 후속 질문에서도 앞선 대화의 맥락을 유지합니다.
 
-## Approach
+## 주요 기능
 
-```text
-Repository
-  -> file discovery
-  -> AST aware chunking
-  -> embedding
-  -> vector search
-  -> LLM reranking
-  -> source based answer
-```
+- Python, JavaScript, TypeScript, Java, C++, Go, Rust 코드 분석
+- Tree-sitter를 활용한 코드 구조 분석
+- ChromaDB를 활용한 의미 기반 검색
+- 여러 AI 모델 제공자 선택
+- 생성 중인 답변을 화면에 순서대로 전달
 
-## Key Features
+## 사용 기술
 
-- Tree-sitter 기반 코드 chunking
-- ChromaDB 기반 vector search
-- sentence-transformers 기반 embedding
-- LangGraph 기반 단계형 workflow
-- multi-provider LLM support
-- FastAPI backend
-- Next.js, TypeScript frontend
-- SSE 기반 진행 상황 스트리밍
+Python, FastAPI, LangGraph, Tree-sitter, ChromaDB, Next.js, TypeScript
 
-## Portfolio Value
+## 확인 자료
 
-이 프로젝트는 AI를 일반 챗봇이 아니라 개발자의 실제 탐색 흐름에 붙이는 경험을 보여줍니다.
-
-- 코드 근거 기반 응답
-- 검색, 재정렬, 요약의 단계 분리
-- 내부 개발 생산성 도구 방향성
-- Agent / Tool-use / Retrieval 구조 이해
-
-## GitHub
-
-https://github.com/aile1492/code-search-agent
-
-## Resume Summary
-
-Code Search Agent는 코드베이스를 AST 단위로 분리하고 vector search와 LLM reranking을 결합해 자연어 질문에 코드 근거 기반으로 답변하는 개발 생산성 도구입니다. 대규모 코드 탐색 병목을 줄이기 위해 검색, 분석, 응답 생성을 단계별 workflow로 구성했습니다.
+[GitHub 저장소](https://github.com/aile1492/code-search-agent)
