@@ -52,6 +52,7 @@ Benchmark 결과는 구현자가 구성한 16개 개발 사례에 한정됩니�
 ## 사용 기술과 링크
 
 - **사용 기술:** TypeScript, Playwright, Seeded PRNG, OpenAI Responses API Function Calling, GitHub Actions
+- [Notion 상세 사례](https://aile1492.notion.site/Game-QA-Agent-QA-3c513eca658781709d09e16b1645dbf1)
 - [GitHub 저장소](https://github.com/aile1492/game-qa-agent)
 - [GitHub Actions](https://github.com/aile1492/game-qa-agent/actions/workflows/qa.yml)
 - [시험 대상 Sweet Crunch](https://github.com/aile1492/sweet-crunch)

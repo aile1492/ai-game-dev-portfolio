@@ -57,7 +57,7 @@
 - 같은 결과를 유지하면서 사용자 조작 단계를 8회에서 1회로 감소
 - 문서의 500개 레벨 표기와 실제 100개 레벨의 불일치를 찾아 수정하고 회귀 검사로 보존
 - 사용 기술: TypeScript, Playwright, OpenAI Responses API, GitHub Actions
-- [상세 문서](docs/projects/game-qa-agent.md) · [GitHub 저장소](https://github.com/aile1492/game-qa-agent) · [CI 실행 결과](https://github.com/aile1492/game-qa-agent/actions/workflows/qa.yml)
+- [상세 문서](docs/projects/game-qa-agent.md) · [Notion 사례](https://aile1492.notion.site/Game-QA-Agent-QA-3c513eca658781709d09e16b1645dbf1) · [GitHub 저장소](https://github.com/aile1492/game-qa-agent) · [CI 실행 결과](https://github.com/aile1492/game-qa-agent/actions/workflows/qa.yml)
 
 ### Code Search Agent
 
