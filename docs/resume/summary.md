@@ -15,7 +15,7 @@
 - Cocos Creator, JavaScript, C++, TypeScript 기반 실무 개발
 - Word Bloom 기획, 구현, Android 빌드와 Google Play 출시
 - Sweet Crunch와 2048 Puzzle을 통한 AI 협업 게임 제작
-- Code Search Agent와 AI Research Agent 등 개발 보조 도구 구현
+- Game QA Agent, Code Search Agent와 AI Research Agent 등 개발 보조 도구 구현
 
 ## 대표 프로젝트
 
@@ -26,6 +26,10 @@
 ### Sweet Crunch
 
 TypeScript와 Phaser 3로 같은 그림 맞추기 퍼즐의 보드 처리, 연쇄 제거, 특수 블록과 레벨 데이터 구성을 구현했습니다.
+
+### Game QA Agent
+
+Sweet Crunch의 레벨 데이터와 실제 Browser 행동을 반복 검사하고, 같은 오류를 다시 실행할 수 있는 Trace와 한국어 보고서를 만드는 QA 자동화 도구를 구현했습니다.
 
 ### Code Search Agent
 

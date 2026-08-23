@@ -11,7 +11,7 @@
 - Cocos Creator, JavaScript, C++, TypeScript 기반 실무 개발
 - AI와 협업해 만든 모바일 퍼즐 게임 **Word Bloom** Google Play 출시
 - Godot와 Phaser 3를 활용한 퍼즐 게임 제작
-- 게임 제작 경험을 코드 검색, 자료 조사, 반복 업무 자동화 도구로 확장
+- 게임 제작 경험을 QA 자동화, 코드 검색, 자료 조사 도구로 확장
 
 ## 대표 프로젝트: Word Bloom
 
@@ -47,6 +47,17 @@
 [게임 프로젝트 상세 설명](docs/projects/supporting-game-projects.md)
 
 ## AI 개발 도구
+
+### Game QA Agent
+
+`Sweet Crunch`의 100개 레벨을 대상으로 규칙 검사, Seed 기반 Simulation, 실제 Browser 실행과 코드 근거 검색을 한 요청으로 조정하는 QA 자동화 도구입니다.
+
+- 시작 상태 10,000개 검사, 전체 Run과 Replay 각 1,000개 수행
+- 개발용 오류 사례 16개에서 Precision·Recall 100%
+- 같은 결과를 유지하면서 사용자 조작 단계를 8회에서 1회로 감소
+- 문서의 500개 레벨 표기와 실제 100개 레벨의 불일치를 찾아 수정하고 회귀 검사로 보존
+- 사용 기술: TypeScript, Playwright, OpenAI Responses API, GitHub Actions
+- [상세 문서](docs/projects/game-qa-agent.md) · [GitHub 저장소](https://github.com/aile1492/game-qa-agent) · [CI 실행 결과](https://github.com/aile1492/game-qa-agent/actions/workflows/qa.yml)
 
 ### Code Search Agent
 
@@ -107,6 +118,6 @@ Unreal Engine 5 공식 샘플의 설정과 로그를 읽기 전용으로 확인�
 
 ## 링크
 
-- [Notion 포트폴리오](https://app.notion.com/p/33413eca6587815c98e5da909b315272)
+- [Notion 포트폴리오](https://aile1492.notion.site/AI-Game-Development-Portfolio-33413eca6587815c98e5da909b315272)
 - [GitHub 프로필](https://github.com/aile1492)
 - [이력서용 요약](docs/resume/summary.md)
